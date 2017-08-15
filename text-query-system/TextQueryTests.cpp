@@ -35,17 +35,19 @@ TEST_CASE("Non-identical Words are not equal") {
 	CHECK_FALSE(word1 == word2);
 }
 
-//TEST_CASE("Case is ignored when comparing Words") {
-//	Word uppercase_word(UPPERCASE);
-//	Word lowercase_word(LOWERCASE);
-//	CHECK(lowercase_word == uppercase_word);
-//}
-//
-//TEST_CASE("Punctuation is ignored when comparing Words") {
-//	Word word_with_punct(PUNCTUATION + "hel" + PUNCTUATION + "lo" + PUNCTUATION);
-//	Word word_without_punct("hello");
-//	CHECK(word_without_punct == word_with_punct);
-//}
+TEST_CASE("Case is ignored when comparing Words") {
+	Word uppercase_word(UPPERCASE);
+	Word lowercase_word(LOWERCASE);
+	CHECK(lowercase_word == uppercase_word);
+}
+
+
+TEST_CASE("Punctuation is ignored when comparing Words") {
+	Word word_with_punct(PUNCTUATION + "hel" + PUNCTUATION + "lo" + PUNCTUATION);
+	Word word_without_punct("hello");
+			CHECK(word_without_punct == word_with_punct);
+}
+
 //
 //TEST_CASE("Word cannot consist solely of punctuation") {
 //	CHECK_THROWS_AS(Word testword("!@#$%"), WordContainsNoLetters);
