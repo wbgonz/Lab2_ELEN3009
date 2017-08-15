@@ -11,7 +11,16 @@ Word::Word(const string& word): _word{word}
 	if (_word.empty()) throw WordContainsNoLetters();
 
 	// Note, we will cover exceptions in more detail later on in the course.
+    auto nonAlphaCounter = 0;
 
+    for(auto i = 0; i < _word.length(); i++){
+        if (int(' ') == _word[i]) throw WordContainsSpace();
+
+        if (!isalpha(int(_word[i]))){
+            nonAlphaCounter++ ;
+        }
+    }
+    if (nonAlphaCounter == _word.length())throw WordContainsNoLetters();
 }
 
 // overloads the equivalence operator which allows to Words to be compared using ==
@@ -42,5 +51,10 @@ bool Word::operator==(const Word& rhs) const
 
 bool Word::isQueryable() const
 {
-	return false;
+    if (_word.length() > 1 && _word.length() < 20){
+        return true;
+    } else{
+        return false;
+    }
+
 }

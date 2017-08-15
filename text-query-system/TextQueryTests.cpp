@@ -10,7 +10,7 @@ const string PUNCTUATION = "~`!@#$%^&*()-_+={}[]\\|:;'<>?,./\"";
 const string UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const string LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
 const int MIN_SIZE_FOR_QUERY = 3;
-
+const int MAX_SIZE_FOR_QUARY = 20;
 // ----------------------------------------------------
 
 // Test the null case first - cannot have an empty word
@@ -48,26 +48,29 @@ TEST_CASE("Punctuation is ignored when comparing Words") {
 			CHECK(word_without_punct == word_with_punct);
 }
 
+
+TEST_CASE("Word cannot consist solely of punctuation") {
+	CHECK_THROWS_AS(Word testword("!@#$%"), WordContainsNoLetters);
+}
+
+TEST_CASE("Word cannot contain a space") {
+	CHECK_THROWS_AS(Word testword("hello there"), WordContainsSpace);
+}
+
+TEST_CASE("Word is queryable if greater than or equal to a specific size") {
+	string test_string;
+	test_string.resize(MIN_SIZE_FOR_QUERY, 'a');
+	Word test_word(test_string);
+	CHECK(test_word.isQueryable());
+}
+
 //
-//TEST_CASE("Word cannot consist solely of punctuation") {
-//	CHECK_THROWS_AS(Word testword("!@#$%"), WordContainsNoLetters);
-//}
-//
-//TEST_CASE("Word cannot contain a space") {
-//	CHECK_THROWS_AS(Word testword("hello there"), WordContainsSpace);
-//}
-//
-//TEST_CASE("Word is queryable if greater than or equal to a specific size") {
-//	string test_string;
-//	test_string.resize(MIN_SIZE_FOR_QUERY, 'a');
-//	Word test_word(test_string);
-//	CHECK(test_word.isQueryable());
-//}
-//
-//TEST_CASE("Word is not queryable if less than a specific size") {
-//// Write this test...
-//}
-//
+TEST_CASE("Word is not queryable if less than a specific size") {
+	string test_string1 = "ThisIsaVeryLonStringForTesting";
+	Word test_Word1(test_string1);
+	CHECK(!test_Word1.isQueryable());
+}
+
 //// ----------------------------------------------------
 //
 //// Test null case first - here, an empty line
