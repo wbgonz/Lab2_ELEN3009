@@ -9,4 +9,5 @@ TEST_CASE("testing the factorial function") {
     CHECK(factorial(2) == 2);
     CHECK(factorial(3) == 6);
     CHECK(factorial(10) == 3628800);
+    //This is a test to see if everything is working
 }
