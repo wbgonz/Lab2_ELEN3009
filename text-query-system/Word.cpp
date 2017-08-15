@@ -10,6 +10,8 @@ Word::Word(const string& word): _word{word}
 	// indicating that the word being constructed contains no letters
 	if (_word.empty()) throw WordContainsNoLetters();
 
+
+
 	// Note, we will cover exceptions in more detail later on in the course.
 }
 
