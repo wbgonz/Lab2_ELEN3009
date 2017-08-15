@@ -2,7 +2,7 @@
 #include "doctest.h"
 
 int factorial(int number) { return number <= 1 ? 1 : factorial(number - 1) * number; }
-
+// Testing 1 2 3 Testing. 
 TEST_CASE("testing the factorial function") {
     CHECK(factorial(0) == 1);
     CHECK(factorial(1) == 1);
