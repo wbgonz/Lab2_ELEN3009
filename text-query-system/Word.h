@@ -1,7 +1,10 @@
 #ifndef WORD_H
 #define WORD_H
 
+#include <iostream>
 #include <string>
+#include <utility>
+#include <vector>
 
 using namespace std;
 

@@ -40,31 +40,34 @@ TEST_CASE("Case is ignored when comparing Words") {
 	Word lowercase_word(LOWERCASE);
 	CHECK(lowercase_word == uppercase_word);
 }
+
+TEST_CASE("Punctuation is ignored when comparing Words") {
+	Word word_with_punct(PUNCTUATION + "hel" + PUNCTUATION + "lo" + PUNCTUATION);
+	Word word_without_punct("hello");
+	CHECK(word_without_punct == word_with_punct);
+}
+
+TEST_CASE("Word cannot consist solely of punctuation") {
+	CHECK_THROWS_AS(Word testword("!@#$%"), WordContainsNoLetters);
+}
 //
-//TEST_CASE("Punctuation is ignored when comparing Words") {
-//	Word word_with_punct(PUNCTUATION + "hel" + PUNCTUATION + "lo" + PUNCTUATION);
-//	Word word_without_punct("hello");
-//	CHECK(word_without_punct == word_with_punct);
-//}
+TEST_CASE("Word cannot contain a space") {
+            CHECK_THROWS_AS(Word testword("hello there"), WordContainsSpace);
+}
 //
-//TEST_CASE("Word cannot consist solely of punctuation") {
-//	CHECK_THROWS_AS(Word testword("!@#$%"), WordContainsNoLetters);
-//}
-//
-//TEST_CASE("Word cannot contain a space") {
-//	CHECK_THROWS_AS(Word testword("hello there"), WordContainsSpace);
-//}
-//
-//TEST_CASE("Word is queryable if greater than or equal to a specific size") {
-//	string test_string;
-//	test_string.resize(MIN_SIZE_FOR_QUERY, 'a');
-//	Word test_word(test_string);
-//	CHECK(test_word.isQueryable());
-//}
-//
-//TEST_CASE("Word is not queryable if less than a specific size") {
-//// Write this test...
-//}
+TEST_CASE("Word is queryable if greater than or equal to a specific size") {
+	string test_string;
+	test_string.resize(MIN_SIZE_FOR_QUERY, 'a');
+	Word test_word(test_string);
+	CHECK(test_word.isQueryable());
+}
+
+TEST_CASE("Word is not queryable if less than a specific size") {
+	string test_string_size = "ThisStirngIsLongerThanTwentyCharacters";
+	Word test_word1(test_string_size);
+	CHECK(!test_word1.isQueryable());
+
+}
 //
 //// ----------------------------------------------------
 //
