@@ -7,3 +7,5 @@
 *.pdf
 
 text-query-system/doctest\.h
+
+text-query-system/Line\.cpp

@@ -18,7 +18,9 @@ public:
 	// if the search word is not found an empty vector is returned
 	bool contains(const Word& search_word, vector<int>& line_numbers) const;	
 
-private:	
+private:
+	vector<Line> _lineVector;
+
 
 };
 

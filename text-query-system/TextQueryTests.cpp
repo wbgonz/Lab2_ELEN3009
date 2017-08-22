@@ -127,22 +127,83 @@ TEST_CASE("Word which is not queryable cannot be found") {
 //
 //// ----------------------------------------------------
 //
-//TEST_CASE("Word cannot be found in empty Paragraph") {
-//}
+TEST_CASE("Word cannot be found in empty Paragraph") {
+    Paragraph testParagraph;
+    Word searchWord("Crazy");
+    vector<int> lineNumbers;
+    CHECK_FALSE(testParagraph.contains(searchWord, lineNumbers));
+}
+
 //
-//TEST_CASE("Word not present in Paragraph cannot be found") {
-//}
-//
-//TEST_CASE("Line number of a Word appearing once in Paragraph is returned") {
-//}
-//
-//TEST_CASE("Line numbers of a Word appearing in multiple Lines of a Paragraph is returned") {
-//}
-//
-//TEST_CASE("Line numbers returned account for an empty Line") {
+TEST_CASE("Word not present in Paragraph cannot be found") {
+    Paragraph testParagraph;
+    Line line1("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.");
+    Line line2("If the first line of the paragraph is empty, and the word being searched for.");
+    Word searchWord("Crazy");
+    vector<int> lineNumbers;
+    CHECK_FALSE(testParagraph.contains(searchWord, lineNumbers));
+}
+
+TEST_CASE("Line number of a Word appearing once in Paragraph is returned") {
+    Paragraph testParagraph;
+    Line line1("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.");
+    Line line2("If the first line of the paragraph is empty, and the word being searched for.");
+
+    Word searchWord("fool");
+    vector<int> lineNumbers;
+    testParagraph.addLine(line1);
+    testParagraph.addLine(line2);
+
+    testParagraph.contains(searchWord, lineNumbers);
+    CHECK_FALSE(lineNumbers.empty());
+    int lineWhereWordIsFound = 1;
+
+    CHECK(lineWhereWordIsFound == lineNumbers[0]);
+}
+
+TEST_CASE("Line numbers of a Word appearing in multiple Lines of a Paragraph is returned") {
+    Paragraph testParagraph;
+    Line line1("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.");
+    Line line2("If the first line of the paragraph is empty, and the word being searched for.");
+    Line line3("line numbers of a Word appearing in multiple Lines of a Paragraph is returned");
+
+    Word searchWord("line");
+    vector<int> lineNumbers;
+    testParagraph.addLine(line1);
+    testParagraph.addLine(line2);
+    testParagraph.addLine(line3);
+
+    CHECK(testParagraph.contains(searchWord, lineNumbers));
+    CHECK_FALSE(lineNumbers.empty());
+
+
+    CHECK_FALSE(1 == lineNumbers[0]);
+    CHECK(2 == lineNumbers[0]);
+    CHECK(3 == lineNumbers[1]);
+
+}
+
+TEST_CASE("Line numbers returned account for an empty Line") {
 //// If the first line of the paragraph is empty, and the word being searched for
 //// is on the second line, the vector returned should be: [2]
-//}
+
+Paragraph testParagraph;
+Line line1("");
+Line line2("If the first line of the paragraph is empty, and the word being searched for.");
+
+Word searchWord("line");
+vector<int> lineNumbers;
+
+testParagraph.addLine(line1);
+testParagraph.addLine(line2);
+
+
+CHECK(testParagraph.contains(searchWord, lineNumbers));
+
+CHECK_FALSE(1 == lineNumbers[0]);
+CHECK(2 == lineNumbers[0]);
+
+}
 //
 //// ----------------------------------------------------
 //
