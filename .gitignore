@@ -5,3 +5,5 @@
 *.ali
 
 *.pdf
+
+text-query-system/doctest\.h
