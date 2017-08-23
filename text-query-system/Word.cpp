@@ -41,8 +41,7 @@ Word::Word(const string &word) : _word{word} {
     if (x.length() == _word.length()) {
         throw WordContainsNoLetters();
     }
-    cout << x.length() << endl;
-    cout << _word.length() << endl;
+
 
 
 

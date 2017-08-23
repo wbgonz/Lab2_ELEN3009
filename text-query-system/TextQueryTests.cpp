@@ -72,26 +72,26 @@ TEST_CASE("Word is not queryable if less than a specific size") {
 //// ----------------------------------------------------
 //
 //// Test null case first - here, an empty line
-//TEST_CASE("Word cannot be found in empty Line") {
-//   Line testline("");
-//   Word searchword("hello");
-//   CHECK_FALSE(testline.contains(searchword));
-//}
+TEST_CASE("Word cannot be found in empty Line") {
+   Line testline("");
+   Word searchword("hello");
+   CHECK_FALSE(testline.contains(searchword));
+}
 //
-//TEST_CASE("Word can be found in a Line with a single Word") {
-//	Line testline("Stop");
-//	Word searchword("Stop");
-//	CHECK(testline.contains(searchword));
-//}
+TEST_CASE("Word can be found in a Line with a single Word") {
+	Line testline("Stop");
+	Word searchword("Stop");
+	CHECK(testline.contains(searchword));
+}
 //
-//// It is always good to write tests which test boundary conditions
-//TEST_CASE("First and last Words in a Line can be found") {
-//	Line testline("Walking on water and developing software from a specification are easy if both are frozen.");
-//	Word first_word_in_line("Walking");
-//	CHECK(testline.contains(first_word_in_line));
-//	Word second_word_in_line("frozen");
-//	CHECK(testline.contains(second_word_in_line));
-//}
+////// It is always good to write tests which test boundary conditions
+TEST_CASE("First and last Words in a Line can be found") {
+	Line testline("Walking on water and developing software from a specification are easy if both are frozen.");
+	Word first_word_in_line("water");
+	CHECK(testline.contains(first_word_in_line));
+	Word second_word_in_line("frozen");
+	CHECK(testline.contains(second_word_in_line));
+}
 //
 //// Test not only success scenarios but also failure scenarios.
 //TEST_CASE("Word not in a Line cannot be found") {
